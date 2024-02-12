@@ -9,12 +9,10 @@ public class Archer implements Character {
         this.defendStrat = defendStrat;
     }
 
-    @Override
     public void attack() {
         attackStrat.attack();
     }
 
-    @Override
     public void defend() {
         defendStrat.defend();
     }
