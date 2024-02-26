@@ -5,6 +5,12 @@ public class Account {
     private Double balance;
     private AccountState accountState;
 
+    public Account(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountState = new ActiveState(this); // Set initial state to Active
+    }
+
     public AccountState getAccountState() {
         return accountState;
     }
@@ -13,26 +19,23 @@ public class Account {
         this.accountState = accountState;
     }
 
-    public Account(String accountNumber, Double balance) {
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-        //this.accountState = accountState;
-    }
-
     public String getAccountNumber() {
         return accountNumber;
     }
+
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
+
     public Double getBalance() {
         return balance;
     }
+
     public void setBalance(Double balance) {
         this.balance = balance;
     }
 
-    public void activate(){
+    public void activate() {
         accountState.activate();
     }
 
@@ -40,18 +43,19 @@ public class Account {
         accountState.suspend();
     }
 
-    public void close(){
+    public void close() {
         accountState.close();
     }
 
-    public void deposit(Double depositAmount){
+    public void deposit(Double depositAmount) {
         accountState.deposit(depositAmount);
     }
 
-    @Override
+    public void withdraw(Double withdrawAmount) {
+        accountState.withdraw(withdrawAmount);
+    }
+
     public String toString() {
         return "Account Number: " + accountNumber + "\nAccount Balance: " + balance;
     }
-
-    
 }

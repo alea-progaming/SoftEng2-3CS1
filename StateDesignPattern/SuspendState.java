@@ -1,7 +1,7 @@
 package StateDesignPattern;
 
 public class SuspendState implements AccountState {
-    public Account account;
+    private Account account;
 
     public SuspendState(Account account) {
         this.account = account;
@@ -14,24 +14,23 @@ public class SuspendState implements AccountState {
 
     @Override
     public void withdraw(Double withdrawAmount) {
-        // TODO Auto-generated method stub
-        
+        System.out.println("You cannot withdraw on suspended account!");
+        System.out.println(account.toString());
     }
 
     @Override
     public void activate() {
-        
+        System.out.println("Account is activated!");
+        account.setAccountState(new ActiveState(account));
     }
 
     @Override
     public void close() {
-        // TODO Auto-generated method stub
-        
+        account.setAccountState(new ClosedState(account));
     }
 
     @Override
     public void suspend() {
-        System.out.println("Account is already suspended.");
+        System.out.println("Account is already suspended!");
     }
-    
 }
